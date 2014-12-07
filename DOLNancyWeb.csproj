@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{5A4016CD-F064-4122-9A35-0CF92F672334}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DOLNancyWeb</RootNamespace>
+    <AssemblyName>DOLNancyWeb</AssemblyName>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <PlatformTarget>x86</PlatformTarget>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\sharedModules\log4net\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy">
+      <HintPath>lib\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Hosting.Self">
+      <HintPath>lib\Nancy.Hosting.Self.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="scripts\DOLNancyWeb\DOLNancyWebInit.cs" />
+    <Compile Include="scripts\DOLNancyWeb\DOLNancyWelcome.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="scripts" />
+    <Folder Include="scripts\DOLNancyWeb" />
+    <Folder Include="scripts\DOLNancyWeb\secured" />
+    <Folder Include="scripts\DOLNancyWeb\static" />
+    <Folder Include="scripts\DOLNancyWeb\public" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\code\DOLSharp\trunk\DOLBase\DOLBase.csproj">
+      <Project>{A4A0FB22-124C-45CA-A653-2887DE0CC3E0}</Project>
+      <Name>DOLBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\code\DOLSharp\trunk\GameServer\GameServer.csproj">
+      <Project>{ACB92917-3D42-4F40-97F9-EA904A41DE36}</Project>
+      <Name>GameServer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent Condition=" '$(OS)' != 'Unix' ">xcopy "$(ProjectDir)scripts\DOLNancyWeb\*" "$(SolutionDir)$(ConfigurationName)\scripts\DOLNancyWeb" /y /s /q /i
+	xcopy "$(ProjectDir)lib\*" "$(SolutionDir)$(ConfigurationName)\lib" /y /s /q /i
+</PostBuildEvent>
+    <PostBuildEvent Condition=" '$(OS)' == 'Unix' ">cd "$(ProjectDir)"; mkdir -p "$(SolutionDir)`echo $(ConfigurationName) | tr '[:upper:]' '[:lower:]'`/scripts/DOLNancyWeb"; find ./ | xargs -i -t cp --parents -f {} "$(SolutionDir)`echo $(ConfigurationName) | tr '[:upper:]' '[:lower:]'`/scripts/DOLNancyWeb"; cp -f "$(ProjectDir)*" "$(SolutionDir)`echo $(ConfigurationName) | tr '[:upper:]' '[:lower:]'`/lib";
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>
