@@ -17,6 +17,7 @@
  *
  */
 using System;
+using System.IO;
 
 using Nancy;
 
@@ -25,14 +26,13 @@ using DOL.GS;
 namespace DOLNancyWeb
 {
 	/// <summary>
-	/// Welcome Module For DOLNancyWeb
-	/// Display Defaut Home Page with route "/"
+	/// DOL Nancy Root Path Provider
 	/// </summary>
-	public class DOLNancyWelcome : NancyModule
+	public class DOLRootPathProvider : IRootPathProvider
 	{
-		public DOLNancyWelcome()
-		{
-        	Get["/"] = parameters => string.Format("<html><head><title>{2}</title></head><body><pre>Current Game Time: {0}\tCurrent Player Count: {1}</pre></body></html>", WorldMgr.GetCurrentGameTime(), WorldMgr.GetAllPlayingClientsCount(), GameServer.Instance.Configuration.ServerName);
-		}
+	    public string GetRootPath()
+	    {
+	        return string.Format("{0}{1}scripts{1}DOLNancyWeb", GameServer.Instance.Configuration.RootDirectory, Path.DirectorySeparatorChar);
+	    }
 	}
 }

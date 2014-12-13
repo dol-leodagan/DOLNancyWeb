@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+	<head>
+		<title>@!Model.Page.Title</title>
+		<link rel="stylesheet" href="/static/style.css">
+		<script src="/static/jquery-2.1.1.min.js"></script>
+	</head>
+<body>
+<p>Hello !</p>
+<p>Server Name : @!Model.Server.Name</p>
+<p>Server Player Count : @!Model.Server.PlayerCount</p>
+<p>Server Time : @!Model.Server.CurrentTime</p>
+</body>
+</html>

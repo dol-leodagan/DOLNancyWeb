@@ -45,6 +45,9 @@
     <Reference Include="Nancy">
       <HintPath>lib\Nancy.dll</HintPath>
     </Reference>
+    <Reference Include="Nancy.Authentication.Forms">
+      <HintPath>lib\Nancy.Authentication.Forms.dll</HintPath>
+    </Reference>
     <Reference Include="Nancy.Hosting.Self">
       <HintPath>lib\Nancy.Hosting.Self.dll</HintPath>
     </Reference>
@@ -59,8 +62,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="scripts\DOLNancyWeb\DOLNancyBootstrapper.cs" />
     <Compile Include="scripts\DOLNancyWeb\DOLNancyWebInit.cs" />
-    <Compile Include="scripts\DOLNancyWeb\DOLNancyWelcome.cs" />
+    <Compile Include="scripts\DOLNancyWeb\DOLRootPathProvider.cs" />
+    <Compile Include="scripts\DOLNancyWeb\DOLUserIdentity.cs" />
+    <Compile Include="scripts\DOLNancyWeb\DOLUserMapper.cs" />
+    <Compile Include="scripts\DOLNancyWeb\public\AuthenticationModule.cs" />
+    <Compile Include="scripts\DOLNancyWeb\public\BasePublicModule.cs" />
+    <Compile Include="scripts\DOLNancyWeb\public\DOLNancyWelcome.cs" />
+    <Compile Include="scripts\DOLNancyWeb\secured\BaseSecuredModule.cs" />
+    <Compile Include="scripts\DOLNancyWeb\secured\DOLNancySecureDemo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="scripts" />
@@ -73,6 +84,10 @@
     <ProjectReference Include="..\code\DOLSharp\trunk\DOLBase\DOLBase.csproj">
       <Project>{A4A0FB22-124C-45CA-A653-2887DE0CC3E0}</Project>
       <Name>DOLBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\code\DOLSharp\trunk\DOLDatabase\DOLDatabase.csproj">
+      <Project>{43BFC675-13B7-4AA8-97F6-6109948849CC}</Project>
+      <Name>DOLDatabase</Name>
     </ProjectReference>
     <ProjectReference Include="..\code\DOLSharp\trunk\GameServer\GameServer.csproj">
       <Project>{ACB92917-3D42-4F40-97F9-EA904A41DE36}</Project>
