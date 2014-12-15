@@ -41,7 +41,7 @@ namespace DOLNancyWeb
 		
 		class PageModel
 		{
-			private NancyModule m_module;
+			private readonly NancyModule m_module;
 			public string Title;
 			public bool Authenticated
 			{

@@ -42,7 +42,7 @@ namespace DOLNancyWeb
 		/// <summary>
 		/// Memory Static Mapping Dictionary (with long for init time storing)
 		/// </summary>
-		private static ReaderWriterDictionary<Guid, IUserIdentity> m_userIdentityMapper = new ReaderWriterDictionary<Guid, IUserIdentity>();
+		private static readonly ReaderWriterDictionary<Guid, IUserIdentity> m_userIdentityMapper = new ReaderWriterDictionary<Guid, IUserIdentity>();
 		
 		/// <summary>
 		/// Register an Authenticated User.
@@ -58,7 +58,6 @@ namespace DOLNancyWeb
 		/// Remove a Registered User based on GUID.
 		/// </summary>
 		/// <param name="identifier"></param>
-		/// <param name="identity"></param>
 		private static void RemoveAuthenticatedUser(Guid identifier)
 		{
 			IUserIdentity dummy;
