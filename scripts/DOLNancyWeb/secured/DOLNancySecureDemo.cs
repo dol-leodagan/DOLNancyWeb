@@ -21,13 +21,14 @@ using System;
 namespace DOLNancyWeb
 {
 	/// <summary>
-	/// Description of DOLNancySecureDemo.
+	/// DDOLNancySecureDemo Page requiring Authentication.
 	/// </summary>
 	public class DOLNancySecureDemo : BaseSecuredModule
 	{
 		public DOLNancySecureDemo()
 			: base("/securedemo")
 		{
+			// Base Secured Module need Authentication for displaying !
 			Get["/"] = parameters => "You are Secured !";
 		}
 	}

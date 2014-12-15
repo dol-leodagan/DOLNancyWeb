@@ -27,17 +27,28 @@ using DOL.Database;
 namespace DOLNancyWeb
 {
 	/// <summary>
-	/// Description of DOLUserIdentity.
+	/// DOLUserIdentity Implementation for Nancy Security
+	/// Provide access to the "Account" DBObject for this Account
+	/// Store GUID for Logout Purpose.
 	/// </summary>
 	public class DOLUserIdentity : IUserIdentity
 	{
 		private Account m_dBAccount;
-		
+		private Guid m_userGuid;
+				
 		/// <summary>
 		/// Retrieve this UserIdentity DBAccount
 		/// </summary>
 		public Account DBAccount {
 			get { return m_dBAccount; }
+		}
+
+		/// <summary>
+		/// User Authentication Configured Guid
+		/// </summary>
+		public Guid UserGuid {
+			get { return m_userGuid; }
+			set { }
 		}
 		
 		#region IUserIdentity Interface
@@ -49,7 +60,7 @@ namespace DOLNancyWeb
 			get { return DBAccount.Name; }
 			set { }
 		}
-
+		
 		/// <summary>
 		/// Gets or set the claims of the current user.
 		/// </summary>
@@ -60,9 +71,10 @@ namespace DOLNancyWeb
 		}
 	    #endregion
 	    
-		public DOLUserIdentity(Account acc)
+		public DOLUserIdentity(Account acc, Guid guid)
 		{
 			m_dBAccount = acc;
+			m_userGuid = guid;
 		}
 	}
 }

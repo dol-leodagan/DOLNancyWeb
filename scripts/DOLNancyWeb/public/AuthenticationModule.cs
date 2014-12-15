@@ -23,62 +23,53 @@ using Nancy.Authentication.Forms;
 using Nancy.ModelBinding;
 
 using DOL.GS;
-using DOL.Database;
-using DOL.GS.PacketHandler.Client.v168;
 
 namespace DOLNancyWeb
 {
 	/// <summary>
 	/// This module Handle authentication forms
 	/// </summary>
-	public class AuthenticationModule : NancyModule
+	public class AuthenticationModule : BasePublicModule
 	{
 		public AuthenticationModule()
+			: base()
 		{
-			var loginModel = new {
-				Username = string.Empty,
-				Password = string.Empty,
+			// Login Form
+			Get["/login"] = parameters => View["public/login.sshtml", new { Message = string.Empty, }];
+
+			// Logout URI
+			Get["/logout"] = parameters => {
+				
+				// check is user is logged.
+				if (this.Context != null && this.Context.CurrentUser != null && this.Context.CurrentUser is DOLUserIdentity)
+					DOLUserMapper.LogoutUser(((DOLUserIdentity)this.Context.CurrentUser).UserGuid);
+				
+				return this.Logout("~/");
 			};
 			
-			Get["/login"] = parameters => View["public/login.sshtml", new { Message = string.Empty, }];
-			/*
-			Get["/logout"] = parameters => {
-			// Called when the user clicks the sign out button in the application. Should
-			// perform one of the Logout actions (see below)
-			};*/
-			
+			// Login Form Posting
 			Post["/login"] = parameters => {
+				// Param From Login Form
 				var loginParams = this.Bind<LoginParams>();
 				
-				string errorString = string.Empty;
-				bool loggedIn = false;
+				string errorMessage;
+				Guid guid;
+				bool ok = DOLUserMapper.ValidateUser(loginParams.Username, loginParams.Password, out guid, out errorMessage);
+								
+				// Wrong login display form with error message
+				if (!ok)
+					return View["public/login.sshtml", new { Message = string.Format("Error While Authenticating User {0} - {1}", loginParams.Username, errorMessage), }];
 				
-				// Try to find the player
-				var playerAccount = GameServer.Database.FindObjectByKey<Account>(GameServer.Database.Escape(loginParams.Username));
-				var guid = new Guid();
-				
-				if (playerAccount != null)
-				{
-					if (playerAccount.Password.Equals(LoginRequestHandler.CryptPassword(loginParams.Password)))
-					{
-						loggedIn = true;
-						DOLUserMapper.AddAuthenticatedUser(guid, new DOLUserIdentity(playerAccount))
-					}
-				}
-				
-				
-				
-				if (!loggedIn)
-					return View["public/login.sshtml", new { Message = string.Format("Error While Authenticating User {0} - {1}", loginParams.Username, errorString), }];
-				
-				return this.LoginAndRedirect(guid, fallbackRedirectUrl: "/");
+				// Login successful redirect and continue !
+				return this.Login(guid);
 			};
 		}
-	}
-	
-	public class LoginParams
-	{
-		public string Username;
-		public string Password;
+		
+		public class LoginParams
+		{
+			public string Username { get; set; }
+			public string Password { get; set; }
+		}
+
 	}
 }

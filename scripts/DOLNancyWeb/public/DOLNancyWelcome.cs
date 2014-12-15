@@ -31,20 +31,52 @@ namespace DOLNancyWeb
 	public class DOLNancyWelcome : BasePublicModule
 	{
 		public DOLNancyWelcome()
+			: base()
 		{
-			var model = new {
-				Page = new {
-					Title = string.Format("{0} - {1}", "Welcome", GameServer.Instance.Configuration.ServerName),
-				},
-				
-				Server = new {
-					Name = GameServer.Instance.Configuration.ServerName,
-					PlayerCount = WorldMgr.GetAllClientsCount(),
-					CurrentTime = WorldMgr.GetCurrentGameTime(),
-				},
-			};
+			// Get Model for Page Display
+			var model = new WelcomeModel(this);
 			
 			Get["/"] = parameters => View["public/welcome.sshtml", model];
+		}
+		
+		class PageModel
+		{
+			private NancyModule m_module;
+			public string Title;
+			public bool Authenticated
+			{
+				get { return m_module.Context != null && m_module.Context.CurrentUser != null && !string.IsNullOrEmpty(m_module.Context.CurrentUser.UserName); }
+			}
+			
+			public PageModel(NancyModule module)
+			{
+				m_module = module;
+			}
+		}
+		
+		class ServerModel
+		{
+			public string Name;
+			public int PlayerCount;
+			public uint CurrentTime;
+		}
+		
+		class WelcomeModel
+		{
+			public PageModel Page;
+			public ServerModel Server;
+			
+			public WelcomeModel(NancyModule welcome)
+			{
+				Page = new PageModel(welcome);
+				Server = new ServerModel();
+				
+				Page.Title = string.Format("{0} - {1}", "Welcome", GameServer.Instance.Configuration.ServerName);
+				
+				Server.Name = GameServer.Instance.Configuration.ServerName;
+				Server.PlayerCount = WorldMgr.GetAllClientsCount();
+				Server.CurrentTime = WorldMgr.GetCurrentGameTime();
+			}
 		}
 	}
 }

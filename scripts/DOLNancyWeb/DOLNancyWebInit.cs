@@ -47,13 +47,13 @@ namespace DOLNancyWeb
 		[ServerProperty("dolnancyweb", "web_server_listen_uri", "Embedded Nancy Web Server Listen URI", "http://localhost:10200")]
 		public static string WEB_SERVER_LISTEN_URI;
 		#endregion
-		
-		#region Members
+
 		/// <summary>
 		/// Defines a logger for this class.
 		/// </summary>
 		private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
+		
+		#region Members
 		/// <summary>
 		/// Define Self Hosted Web Server
 		/// </summary>

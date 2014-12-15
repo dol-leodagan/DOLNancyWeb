@@ -6,7 +6,12 @@
 		<script src="/static/jquery-2.1.1.min.js"></script>
 	</head>
 <body>
+@If.Page.Authenticated
+<p>Hello - @!Context.CurrentUser.UserName !</p>
+@EndIf
+@IfNot.Page.Authenticated
 <p>Hello !</p>
+@EndIf
 <p>Server Name : @!Model.Server.Name</p>
 <p>Server Player Count : @!Model.Server.PlayerCount</p>
 <p>Server Time : @!Model.Server.CurrentTime</p>

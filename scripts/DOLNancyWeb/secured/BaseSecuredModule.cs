@@ -29,6 +29,7 @@ namespace DOLNancyWeb
 	public class BaseSecuredModule : NancyModule
 	{
 		public BaseSecuredModule()
+			: base()
 		{
 			this.RequiresAuthentication();
 		}

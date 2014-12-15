@@ -17,10 +17,13 @@
  *
  */
 using System;
+using System.Reflection;
 
 using Nancy;
 using Nancy.Conventions;
 using Nancy.Authentication.Forms;
+
+using log4net;
 
 namespace DOLNancyWeb
 {
@@ -57,6 +60,7 @@ namespace DOLNancyWeb
 		protected override void ApplicationStartup(Nancy.TinyIoc.TinyIoCContainer container, Nancy.Bootstrapper.IPipelines pipelines)
 		{
 			base.ApplicationStartup(container, pipelines);
+			
 			var formsAuthConfiguration = new FormsAuthenticationConfiguration
 			{
 				RedirectUrl = "~/login",
@@ -66,10 +70,13 @@ namespace DOLNancyWeb
 			FormsAuthentication.Enable(pipelines, formsAuthConfiguration);
 		}
 		
+		/// <summary>
+		/// Register DOL User Mapper for Authentication Resolve.
+		/// </summary>
+		/// <param name="container"></param>
 		protected override void ConfigureApplicationContainer(Nancy.TinyIoc.TinyIoCContainer container)
 		{
 			base.ConfigureApplicationContainer(container);
-			
 			container.Register<IUserMapper, DOLUserMapper>();
 		}
 	}

@@ -28,6 +28,7 @@ namespace DOLNancyWeb
 	public class BasePublicModule : NancyModule
 	{
 		public BasePublicModule()
+			: base()
 		{
 		}
 		
