@@ -23,8 +23,10 @@ using Nancy;
 using Nancy.Hosting.Self;
 using log4net;
 
+using DOL.GS;
 using DOL.Events;
 using DOL.GS.ServerProperties;
+using DOL.Database;
 
 namespace DOLNancyWeb
 {
@@ -46,6 +48,18 @@ namespace DOLNancyWeb
 		/// </summary>
 		[ServerProperty("dolnancyweb", "web_server_listen_uri", "Embedded Nancy Web Server Listen URI", "http://localhost:10200")]
 		public static string WEB_SERVER_LISTEN_URI;
+		
+		/// <summary>
+		/// Embedded Nancy Web cookie Encryption Secret
+		/// </summary>
+		[ServerProperty("dolnancyweb", "web_server_cookie_crypt_secret", "Embedded Web Server Cookie Encryption Secret (If Empty will be auto set on first start)", "")]
+		public static string WEB_SERVER_COOKIE_CRYPT_SECRET;
+		
+		/// <summary>
+		/// Embedded Nancy Web cookie Encryption Hash Secret
+		/// </summary>
+		[ServerProperty("dolnancyweb", "web_server_cookie_crypt_hash_secret", "Embedded Web Server Cookie Encryption Hash Secret (If Empty will be auto set on first start)", "")]
+		public static string WEB_SERVER_COOKIE_CRYPT_HASH_SECRET;
 		#endregion
 
 		/// <summary>
@@ -70,6 +84,39 @@ namespace DOLNancyWeb
 		[ScriptLoadedEvent]
 		public static void OnServerStart(DOLEvent e, object sender, EventArgs arguments)
 		{
+			var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_+.!?*$#{}[]|@";
+			var secret = new char[64];
+			
+			// Init Crypto Secret
+			if (string.IsNullOrEmpty(DOLNancyWebInit.WEB_SERVER_COOKIE_CRYPT_SECRET))
+			{
+				for (int i = 0; i < secret.Length; i++)
+					secret[i] = chars[Util.CryptoNextInt(chars.Length)];
+				
+				WEB_SERVER_COOKIE_CRYPT_SECRET = new string(secret);
+				ServerProperty property = GameServer.Database.SelectObject<ServerProperty>("`Key` = 'web_server_cookie_crypt_secret'");
+				if (property != null)
+				{
+					property.Value = WEB_SERVER_COOKIE_CRYPT_SECRET;
+					GameServer.Database.SaveObject(property);
+				}
+			}
+			
+			// Init Crypto Hash Secret
+			if (string.IsNullOrEmpty(DOLNancyWebInit.WEB_SERVER_COOKIE_CRYPT_HASH_SECRET))
+			{
+				for (int i = 0; i < secret.Length; i++)
+					secret[i] = chars[Util.CryptoNextInt(chars.Length)];
+				
+				WEB_SERVER_COOKIE_CRYPT_HASH_SECRET = new string(secret);
+				ServerProperty property = GameServer.Database.SelectObject<ServerProperty>("`Key` = 'web_server_cookie_crypt_hash_secret'");
+				if (property != null)
+				{
+					property.Value = WEB_SERVER_COOKIE_CRYPT_HASH_SECRET;
+					GameServer.Database.SaveObject(property);
+				}
+			}
+			
 			if (DOLNancyWebInit.ENABLE_WEB_SERVER && m_embeddedWebServer == null)
 			{
 				try
