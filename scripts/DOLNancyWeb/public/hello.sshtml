@@ -1,0 +1,3 @@
+﻿@IfNotNull.Context.CurrentUser
+	Hello @!Context.CurrentUser.UserName !
+@EndIf

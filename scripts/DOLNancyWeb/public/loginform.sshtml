@@ -1,14 +1,5 @@
-@Master['public/index.sshtml']
-
-@Section['Body']
-
-<div class="dlw_authentication">
-<span>@!Model.Message</span>
-<form method="post">
+﻿<form method="post" action="/login?redirectUrl=@!Context.Request.Path">
     <label for="Username">Username</label><input id="Username" type="text" name="Username" />
     <label for="Password">Password</label><input id="Password" type="password" name="Password" />
     <button type="submit">Login</button>
 </form>
-</div>
-
-@EndSection

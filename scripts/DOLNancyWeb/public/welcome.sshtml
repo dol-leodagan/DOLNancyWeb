@@ -1,19 +1,9 @@
-<!doctype html>
-<html>
-	<head>
-		<title>@!Model.Page.Title</title>
-		<link rel="stylesheet" href="/static/style.css">
-		<script src="/static/jquery-2.1.1.min.js"></script>
-	</head>
-<body>
-@If.Page.Authenticated
-<p>Hello - @!Context.CurrentUser.UserName !</p>
-@EndIf
-@IfNot.Page.Authenticated
-<p>Hello !</p>
-@EndIf
+@Master['public/index.sshtml']
+
+@Section['Body']
+
 <p>Server Name : @!Model.Server.Name</p>
 <p>Server Player Count : @!Model.Server.PlayerCount</p>
 <p>Server Time : @!Model.Server.CurrentTime</p>
-</body>
-</html>
+
+@EndSection

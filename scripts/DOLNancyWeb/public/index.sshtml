@@ -1,0 +1,26 @@
+@Master['public/main.sshtml']
+
+@Section['Head']
+	@Partial['public/head.sshtml']
+@EndSection
+
+@Section['Authentication']
+	@IfNotNull.Context.CurrentUser
+		@Partial['public/hello.sshtml']
+	@EndIf
+	@IfNull.Context.CurrentUser
+		@Partial['public/loginform.sshtml']
+	@EndIf
+@EndSection
+
+@Section['Title']
+	@Partial['public/title.sshtml']
+@EndSection
+
+@Section['Body']
+	@Section['Body']
+@EndSection
+
+@Section['Foot']
+   @Partial['public/foot.sshtml']
+@EndSection

@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="scripts\DOLNancyWeb\DOLNancyBootstrapper.cs" />
+    <Compile Include="scripts\DOLNancyWeb\DOLNancyDefaultModel.cs" />
     <Compile Include="scripts\DOLNancyWeb\DOLNancyWebInit.cs" />
     <Compile Include="scripts\DOLNancyWeb\DOLRootPathProvider.cs" />
     <Compile Include="scripts\DOLNancyWeb\DOLUserIdentity.cs" />
@@ -93,6 +94,17 @@
       <Project>{ACB92917-3D42-4F40-97F9-EA904A41DE36}</Project>
       <Name>GameServer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="scripts\DOLNancyWeb\public\foot.sshtml" />
+    <None Include="scripts\DOLNancyWeb\public\head.sshtml" />
+    <None Include="scripts\DOLNancyWeb\public\hello.sshtml" />
+    <None Include="scripts\DOLNancyWeb\public\index.sshtml" />
+    <None Include="scripts\DOLNancyWeb\public\login.sshtml" />
+    <None Include="scripts\DOLNancyWeb\public\loginform.sshtml" />
+    <None Include="scripts\DOLNancyWeb\public\main.sshtml" />
+    <None Include="scripts\DOLNancyWeb\public\title.sshtml" />
+    <None Include="scripts\DOLNancyWeb\public\welcome.sshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
