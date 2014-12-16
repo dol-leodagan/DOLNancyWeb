@@ -1,16 +1,20 @@
 @Master['views/index.sshtml']
 
 @Section['Body']
-
-<div class="dlw_authentication">
-@IfNotNull.Model.Message
-	<span>@!Model.Message</span>
-@EndIf
-<form method="post">
-    <label for="Username">Username</label><input id="Username" type="text" name="Username" />
-    <label for="Password">Password</label><input id="Password" type="password" name="Password" />
-    <button type="submit">Login</button>
-</form>
-</div>
-
+	<div class="dlw_authentication">
+		@IfNotNull.Model.Message
+			<span>@!Model.Message</span>
+		@EndIf
+	
+		@IfNull.Context.CurrentUser
+			<form method="post">
+			    <label for="Username">Username</label><input id="Username" type="text" name="Username" />
+			    <label for="Password">Password</label><input id="Password" type="password" name="Password" />
+			    <button type="submit">Login</button>
+			</form>
+		@EndIf
+		@IfNotNull.Context.CurrentUser
+			<span>You are already logged in ! Please <a href="@Path['~/logout']">logout</a> before trying to login again...<span>
+		@EndIf
+	</div>
 @EndSection
