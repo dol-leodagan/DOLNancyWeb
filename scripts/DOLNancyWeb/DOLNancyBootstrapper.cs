@@ -17,13 +17,11 @@
  *
  */
 using System;
-using System.Reflection;
 
 using Nancy;
 using Nancy.Conventions;
 using Nancy.Authentication.Forms;
-
-using log4net;
+using Nancy.Cryptography;
 
 namespace DOLNancyWeb
 {
@@ -43,12 +41,12 @@ namespace DOLNancyWeb
 		/// <summary>
 		/// Set Static File Path Convention
 		/// </summary>
-		/// <param name="conventions"></param>
-    	protected override void ConfigureConventions(NancyConventions conventions)
+		/// <param name="nancyConventions"></param>
+    	protected override void ConfigureConventions(NancyConventions nancyConventions)
 		{
-			base.ConfigureConventions(conventions);
+			base.ConfigureConventions(nancyConventions);
 			
-			conventions.StaticContentsConventions.Add(
+			nancyConventions.StaticContentsConventions.Add(
 				StaticContentConventionBuilder.AddDirectory("static", @"static"));
 		}
     	
@@ -61,8 +59,15 @@ namespace DOLNancyWeb
 		{
 			base.ApplicationStartup(container, pipelines);
 			
+			// Set Cryptography Configuration
+			var cryptographyConfiguration = new CryptographyConfiguration(
+				new RijndaelEncryptionProvider(new PassphraseKeyGenerator(DOLNancyWebInit.WEB_SERVER_COOKIE_CRYPT_SECRET, new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 })),
+				new DefaultHmacProvider(new PassphraseKeyGenerator(DOLNancyWebInit.WEB_SERVER_COOKIE_CRYPT_HASH_SECRET, new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 })));
+
+			// Set Form Authentication Configuration
 			var formsAuthConfiguration = new FormsAuthenticationConfiguration
 			{
+				CryptographyConfiguration = cryptographyConfiguration,
 				RedirectUrl = "~/login",
 				UserMapper = container.Resolve<IUserMapper>(),
 			};
