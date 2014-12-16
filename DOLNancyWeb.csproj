@@ -98,6 +98,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="scripts\DOLNancyWeb\static\style.css" />
     <None Include="scripts\DOLNancyWeb\views\foot.sshtml" />
     <None Include="scripts\DOLNancyWeb\views\head.sshtml" />
     <None Include="scripts\DOLNancyWeb\views\hello.sshtml" />
