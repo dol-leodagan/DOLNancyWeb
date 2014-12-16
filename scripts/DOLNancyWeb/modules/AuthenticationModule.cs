@@ -21,8 +21,7 @@ using System;
 using Nancy;
 using Nancy.Authentication.Forms;
 using Nancy.ModelBinding;
-
-using DOL.GS;
+using Nancy.Extensions;
 
 namespace DOLNancyWeb
 {
@@ -35,7 +34,7 @@ namespace DOLNancyWeb
 			: base()
 		{
 			// Login Form
-			Get["/login"] = parameters => View["public/login.sshtml", new { Message = string.Empty, }];
+			Get["/login"] = parameters => View["views/login.sshtml", new AuthenticationModel(this)];
 
 			// Logout URI
 			Get["/logout"] = parameters => {
@@ -58,7 +57,11 @@ namespace DOLNancyWeb
 								
 				// Wrong login display form with error message
 				if (!ok)
-					return View["public/login.sshtml", new { Message = string.Format("Error While Authenticating User {0} - {1}", loginParams.Username, errorMessage), }];
+				{
+					var model = new AuthenticationModel(this);
+					model.Message = string.Format("Error While Authenticating User {0} - {1}", loginParams.Username, errorMessage);
+					return View["views/login.sshtml",model];
+				}
 				
 				// Login successful redirect and continue !
 				return this.Login(guid);

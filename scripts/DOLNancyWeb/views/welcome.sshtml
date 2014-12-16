@@ -1,4 +1,4 @@
-@Master['public/index.sshtml']
+@Master['views/index.sshtml']
 
 @Section['Body']
 

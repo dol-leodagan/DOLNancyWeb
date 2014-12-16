@@ -63,23 +63,25 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="scripts\DOLNancyWeb\DOLNancyBootstrapper.cs" />
-    <Compile Include="scripts\DOLNancyWeb\DOLNancyDefaultModel.cs" />
     <Compile Include="scripts\DOLNancyWeb\DOLNancyWebInit.cs" />
     <Compile Include="scripts\DOLNancyWeb\DOLRootPathProvider.cs" />
     <Compile Include="scripts\DOLNancyWeb\DOLUserIdentity.cs" />
     <Compile Include="scripts\DOLNancyWeb\DOLUserMapper.cs" />
-    <Compile Include="scripts\DOLNancyWeb\public\AuthenticationModule.cs" />
-    <Compile Include="scripts\DOLNancyWeb\public\BasePublicModule.cs" />
-    <Compile Include="scripts\DOLNancyWeb\public\DOLNancyWelcome.cs" />
-    <Compile Include="scripts\DOLNancyWeb\secured\BaseSecuredModule.cs" />
-    <Compile Include="scripts\DOLNancyWeb\secured\DOLNancySecureDemo.cs" />
+    <Compile Include="scripts\DOLNancyWeb\models\AuthenticationModel.cs" />
+    <Compile Include="scripts\DOLNancyWeb\models\DOLNancyDefaultModel.cs" />
+    <Compile Include="scripts\DOLNancyWeb\modules\AuthenticationModule.cs" />
+    <Compile Include="scripts\DOLNancyWeb\modules\BasePublicModule.cs" />
+    <Compile Include="scripts\DOLNancyWeb\modules\BaseSecuredModule.cs" />
+    <Compile Include="scripts\DOLNancyWeb\modules\DOLNancySecureDemo.cs" />
+    <Compile Include="scripts\DOLNancyWeb\modules\DOLNancyWelcome.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="scripts" />
     <Folder Include="scripts\DOLNancyWeb" />
-    <Folder Include="scripts\DOLNancyWeb\secured" />
+    <Folder Include="scripts\DOLNancyWeb\modules" />
+    <Folder Include="scripts\DOLNancyWeb\models" />
+    <Folder Include="scripts\DOLNancyWeb\views" />
     <Folder Include="scripts\DOLNancyWeb\static" />
-    <Folder Include="scripts\DOLNancyWeb\public" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\code\DOLSharp\trunk\DOLBase\DOLBase.csproj">
@@ -96,15 +98,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="scripts\DOLNancyWeb\public\foot.sshtml" />
-    <None Include="scripts\DOLNancyWeb\public\head.sshtml" />
-    <None Include="scripts\DOLNancyWeb\public\hello.sshtml" />
-    <None Include="scripts\DOLNancyWeb\public\index.sshtml" />
-    <None Include="scripts\DOLNancyWeb\public\login.sshtml" />
-    <None Include="scripts\DOLNancyWeb\public\loginform.sshtml" />
-    <None Include="scripts\DOLNancyWeb\public\main.sshtml" />
-    <None Include="scripts\DOLNancyWeb\public\title.sshtml" />
-    <None Include="scripts\DOLNancyWeb\public\welcome.sshtml" />
+    <None Include="scripts\DOLNancyWeb\views\foot.sshtml" />
+    <None Include="scripts\DOLNancyWeb\views\head.sshtml" />
+    <None Include="scripts\DOLNancyWeb\views\hello.sshtml" />
+    <None Include="scripts\DOLNancyWeb\views\index.sshtml" />
+    <None Include="scripts\DOLNancyWeb\views\login.sshtml" />
+    <None Include="scripts\DOLNancyWeb\views\loginform.sshtml" />
+    <None Include="scripts\DOLNancyWeb\views\main.sshtml" />
+    <None Include="scripts\DOLNancyWeb\views\menu.sshtml" />
+    <None Include="scripts\DOLNancyWeb\views\title.sshtml" />
+    <None Include="scripts\DOLNancyWeb\views\welcome.sshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

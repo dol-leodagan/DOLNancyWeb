@@ -1,0 +1,30 @@
+@Master['views/main.sshtml']
+
+@Section['Head']
+	@Partial['views/head.sshtml']
+@EndSection
+
+@Section['Authentication']
+	@IfNotNull.Context.CurrentUser
+		@Partial['views/hello.sshtml']
+	@EndIf
+	@IfNull.Context.CurrentUser
+		@Partial['views/loginform.sshtml']
+	@EndIf
+@EndSection
+
+@Section['Title']
+	@Partial['views/title.sshtml']
+@EndSection
+
+@Section['Menu']
+	@Partial['views/menu.sshtml']
+@EndSection
+
+@Section['Body']
+	@Section['Body']
+@EndSection
+
+@Section['Foot']
+   @Partial['views/foot.sshtml']
+@EndSection

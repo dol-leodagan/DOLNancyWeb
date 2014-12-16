@@ -18,15 +18,18 @@
  */
 using System;
 
+using Nancy;
+
 namespace DOLNancyWeb
 {
-	/// <summary>
-	/// Default Model to subclass for displaying application wide data.
-	/// </summary>
-	public class DOLNancyDefaultModel
+	public class AuthenticationModel : DOLNancyDefaultModel
 	{
-		public DOLNancyDefaultModel()
+		public string Message;
+		
+		public AuthenticationModel(NancyModule module)
+			: base(module)
 		{
+			
 		}
 	}
 }
