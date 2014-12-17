@@ -2,6 +2,7 @@
 
 body {
 	font-family: arial,sans-serif;
+	margin: 0;
 }
 
 input {
@@ -18,8 +19,8 @@ input:hover, input:focus {
 }
 
 button {
-	background-color: #0b77b7;
-	color: #fff;
+	background-color: #ECD84E;
+	color: #000;
 	border: 0 none #000;
 	padding: 0.25em;
 	border-radius: 2px;
@@ -30,12 +31,121 @@ fieldset {
 	padding: 0.25em 0.5em 0.5em;
 }
 
+/* Title Styles */
+
+div.dlw_title {
+	background-color: #cccccc;
+	height: 10em;
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
+}
+
+.dlw_title > span {
+	background-image: url("/static/img/logo.png");
+	background-repeat: no-repeat;
+	display: inline-block;
+	height: 145px;
+	margin-left: 10px;
+	padding-left: 125px;
+	padding-top: 25px;
+	font-family: monospace;
+	font-weight: bold;
+	font-size: 6em;
+	text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+	color: #fff;
+}
+
+/* Body Styles */
+
+#dlw_body {
+	margin-top: 1em;
+	padding-left: 17em;
+}
+
+/* Menu Styles */
+
+.dlw_menu {
+	background-color: #bbb;
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+	float: left;
+	margin-top: 1em;
+	padding: 0.2em;
+	position: fixed;
+	width: 15em;
+}
+
+/* Footer Style */
+
+#dlw_foot {
+	text-align:center;
+	background-color: #aaaaaa;
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
+	margin-top: 1em;
+	margin-bottom: 7px;
+	padding: 0.2em;
+	font-weight: bold;
+	text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+	font-size: 0.9em;
+}
+
+#dlw_foot a , #dlw_hello > a{
+	color: #ECB214;
+	text-shadow: initial;
+	text-decoration: none;
+}
+
+/* Hello Styles */
+
+#dlw_hello {
+	min-width: 16em;
+}
+
+#dlw_hello > span {
+	color: white;
+}
+
+#dlw_hello > a {
+	float: right;
+	font-weight: bold;
+}
+
+span.dlw_currentplayer {
+	display: block;
+	text-align: center;
+	margin-top: 0.5em;
+}
+
 /* Specific Authentication Styles */
 
 #dlw_authentication {
- 	position: absolute;
- 	right: 1em;
-	top: 0.5em;
+	position: absolute;
+	right: 1em;
+	top: -0.5em;
+}
+
+#dlw_authentication > form, #dlw_hello {
+	padding: 0.5em 0.2em 0.2em 0.2em;
+}
+
+#dlw_login > form {
+	padding: 0.2em;
+	margin-top: 0.5em;
+	margin-right: auto;
+	margin-left:auto;
+	width: 15.8em;
+}
+
+#dlw_login {
+	text-align: center;
+}
+
+#dlw_login > span {
+	font-weight: bold;
+	color: #bb0000;
+}
+
+div.dlw_authentication > form, #dlw_hello  {
+	background-color: #007788;
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
 }
 
 .dlw_authentication fieldset {
@@ -43,16 +153,18 @@ fieldset {
 }
 
 .dlw_authentication legend {
-	color: #0b77b7;
+	color: #ECD84E;
+	font-size: 1.1em;
 }
 
 .dlw_authentication label {
-    float: left;
+	float: left;
 	clear: left;
-    margin-right: 1em;
+	margin-right: 1em;
 	margin-top: 0.2em;
-    text-align: right;
-    width: 5em;
+	text-align: right;
+	width: 5em;
+	color: #fff
 }
 
 .dlw_authentication input {
@@ -64,5 +176,5 @@ fieldset {
 .dlw_authentication button {
 	width: 90%;
 	margin: 0.5em 5% 0 5%;
-
+	font-weight: bold;
 }
