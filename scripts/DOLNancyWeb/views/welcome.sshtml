@@ -2,8 +2,8 @@
 
 @Section['Body']
 
-<p>Server Name : @!Model.Server.Name</p>
-<p>Server Player Count : @!Model.Server.PlayerCount</p>
-<p>Server Time : @!Model.Server.CurrentTime</p>
+<p>Server Name : @!Model.Server.Configuration.ServerName</p>
+<p>Server Player Count : @!Model.Server.ClientCount</p>
+<p>Server Time : @!Model.GameTime</p>
 
 @EndSection

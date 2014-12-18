@@ -107,6 +107,7 @@
     <None Include="scripts\DOLNancyWeb\views\loginform.sshtml" />
     <None Include="scripts\DOLNancyWeb\views\main.sshtml" />
     <None Include="scripts\DOLNancyWeb\views\menu.sshtml" />
+    <None Include="scripts\DOLNancyWeb\views\securedemo.sshtml" />
     <None Include="scripts\DOLNancyWeb\views\title.sshtml" />
     <None Include="scripts\DOLNancyWeb\views\welcome.sshtml" />
   </ItemGroup>

@@ -114,6 +114,19 @@ span.dlw_currentplayer {
 	margin-top: 0.5em;
 }
 
+span.dlw_currentplayer[data-player-realm="_FirstPlayerRealm"] > span, span.dlw_currentplayer[data-player-realm="Albion"]  > span {
+	color: #FF5E5E;
+}
+
+span.dlw_currentplayer[data-player-realm="_LastPlayerRealm"] > span, span.dlw_currentplayer[data-player-realm="_Hibernia"] > span {
+	color: #C5CC63;
+}
+
+span.dlw_currentplayer[data-player-realm="Midgard"] > span {
+	color: #A8A8FF;
+}
+
+
 /* Specific Authentication Styles */
 
 #dlw_authentication {

@@ -28,8 +28,11 @@ namespace DOLNancyWeb
 		public DOLNancySecureDemo()
 			: base("/securedemo")
 		{
+			// Get Model for Page Display
+			var model = new DOLNancyDefaultModel(this);
+			model.Title = "Secure Demo";
 			// Base Secured Module need Authentication for displaying !
-			Get["/"] = parameters => "You are Secured !";
+			Get["/"] = parameters => View["views/securedemo.sshtml", model];
 		}
 	}
 }

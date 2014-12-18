@@ -1,7 +1,10 @@
-﻿@IfNotNull.Context.CurrentUser
-<div id="dlw_hello">
+﻿<div id="dlw_hello">
 	<span>User: @!Context.CurrentUser.UserName</span>
 	<a href="@Path['~/logout']"><span>Logout</span></a>
-	<span class="dlw_currentplayer" data-player-realm="@!Model.Server.CurrentPlayerRealm">Current Player: <span>@!Model.Server.CurrentPlayerName</span>
+	@IfNotNull.Model.Player
+		<span class="dlw_currentplayer" data-player-realm="@!Model.Player.Realm"><span>@!Model.Player.Name</span> the @!Model.Player.CharacterClass.Name</span>
+	@EndIf
+	@IfNull.Model.Player
+		<span class="dlw_currentplayer" data-player-realm="None">Not Currently Playing</span>
+	@EndIf
 </div>
-@EndIf

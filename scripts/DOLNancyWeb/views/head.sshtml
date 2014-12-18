@@ -1,3 +1,3 @@
-<title>@!Model.Page.Title</title>
+<title>@!Model.Title - @!Model.Server.Configuration.ServerName</title>
 <link rel="stylesheet" href="/static/style.css">
 <script src="/static/jquery-2.1.1.min.js"></script>

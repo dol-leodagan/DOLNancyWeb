@@ -24,7 +24,17 @@ namespace DOLNancyWeb
 {
 	public class AuthenticationModel : DOLNancyDefaultModel
 	{
+		/// <summary>
+		/// Message for Error Display
+		/// </summary>
 		public string Message;
+		
+		/// <summary>
+		/// Override Page Title
+		/// </summary>
+		public override string Title {
+			get { return "Log In"; }
+		}
 		
 		public AuthenticationModel(NancyModule module)
 			: base(module)
