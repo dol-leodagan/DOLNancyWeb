@@ -58,19 +58,52 @@ div.dlw_title {
 
 #dlw_body {
 	margin-top: 1em;
-	padding-left: 17em;
+	overflow: hidden;
+	margin: 1em 1em 1em 0;
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+	padding: 0.5em;
 }
 
 /* Menu Styles */
 
 .dlw_menu {
-	background-color: #bbb;
+	background-color: #888;
 	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+	margin: 1em 1em 1em 0;
+	padding-right: 1em;
+	padding-bottom: 1em;
 	float: left;
-	margin-top: 1em;
-	padding: 0.2em;
-	position: fixed;
-	width: 15em;
+}
+
+.dlw_menu li {
+	padding-left: 2em;
+	text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+}
+
+.dlw_menu ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	color: white;
+}
+
+.dlw_menu > ul > li {
+	padding: 0.2em 1em 0.2em 0.5em;
+	margin-top: 0.5em;
+	margin-bottom: 0.2em;
+	background-color: #333;
+	box-shadow: -1px 2px 5px 1px rgba(255, 255, 255, 0.7);
+	text-shadow: initial;
+}
+
+.dlw_menu  a , .dlw_menu a:visited {
+	text-decoration: none;
+	color: #fdc314;
+	font-weight: bold;
+}
+
+.dlw_menu a:hover {
+	text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
 }
 
 /* Footer Style */
@@ -80,17 +113,22 @@ div.dlw_title {
 	background-color: #aaaaaa;
 	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); 
 	margin-top: 1em;
-	margin-bottom: 7px;
+	margin-bottom: 1em;
 	padding: 0.2em;
 	font-weight: bold;
 	text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
 	font-size: 0.9em;
+	clear: left;
 }
 
-#dlw_foot a , #dlw_hello > a{
-	color: #ECB214;
+#dlw_foot a , #dlw_hello > a {
+	color: #fdc314;
 	text-shadow: initial;
 	text-decoration: none;
+}
+
+#dlw_foot a:hover , #dlw_hello > a:hover {
+	text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
 }
 
 /* Hello Styles */
@@ -103,6 +141,12 @@ div.dlw_title {
 	color: white;
 }
 
+#dlw_hello > span > span {
+	font-weight:bold;
+	text-transform: capitalize;
+	margin-left: 0.2em;
+}
+
 #dlw_hello > a {
 	float: right;
 	font-weight: bold;
@@ -111,19 +155,22 @@ div.dlw_title {
 span.dlw_currentplayer {
 	display: block;
 	text-align: center;
-	margin-top: 0.5em;
+	margin: 0.5em 1em 0.5em;
+	padding: 0.25em;
+	color: #000 !important;
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+	background-color: #ECD84E;
+	border-radius: 2px;
 }
 
 span.dlw_currentplayer[data-player-realm="_FirstPlayerRealm"] > span, span.dlw_currentplayer[data-player-realm="Albion"]  > span {
-	color: #FF5E5E;
+	color: #e52d2d;
 }
-
-span.dlw_currentplayer[data-player-realm="_LastPlayerRealm"] > span, span.dlw_currentplayer[data-player-realm="_Hibernia"] > span {
-	color: #C5CC63;
-}
-
 span.dlw_currentplayer[data-player-realm="Midgard"] > span {
-	color: #A8A8FF;
+	color: #7272FF;
+}
+span.dlw_currentplayer[data-player-realm="_LastPlayerRealm"] > span, span.dlw_currentplayer[data-player-realm="Hibernia"] > span {
+	color: #009E0A;
 }
 
 

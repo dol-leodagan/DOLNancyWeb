@@ -1,5 +1,5 @@
 ﻿<div id="dlw_hello">
-	<span>User: @!Context.CurrentUser.UserName</span>
+	<span>User: <span>@!Context.CurrentUser.UserName</span></span>
 	<a href="@Path['~/logout']"><span>Logout</span></a>
 	@IfNotNull.Model.Player
 		<span class="dlw_currentplayer" data-player-realm="@!Model.Player.Realm"><span>@!Model.Player.Name</span> the @!Model.Player.CharacterClass.Name</span>

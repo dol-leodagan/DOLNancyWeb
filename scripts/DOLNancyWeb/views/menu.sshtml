@@ -1,1 +1,36 @@
-﻿---Menu---
+﻿<ul>
+	<li><a href="@Path['~/']">Welcome</a></li>
+	<li>World</li>
+		<ul>
+			<li>Skills</li>
+			<li>Items</li>
+			<li>NPC/Mobs</li>
+		</ul>
+	<li><a href="@Path['~/player']">Player</a></li>
+		<ul>
+			<li>Quests</li>
+			<li>Guild</li>
+			<li>Housing</li>
+		</ul>
+	<li>Builder</li>
+		<ul>
+			<li>NPC/Mobs</li>
+			<li>Merchants</li>
+			<li>Teleporters</li>
+			<li>Quests</li>
+			<li>Skills</li>
+			<li>Keeps</li>
+		</ul>
+	<li>GameMaster</li>
+		<ul>
+			<li>Appeals</li>
+			<li>Bans</li>
+			<li>Cheaters</li>
+			<li>RvR Logs</li>
+		</ul>
+	<li>Admin</li>
+		<ul>
+			<li><a href="@Path['~/roles']">Roles</a></li>
+			<li><a href="@Path['~/properties']">Properties</a></li>
+		</ul>
+</ul>
