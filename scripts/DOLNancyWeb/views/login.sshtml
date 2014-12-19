@@ -2,6 +2,7 @@
 
 @Section['Body']
 	<div id="dlw_login" class="dlw_authentication">
+		<h3>Please enter your Game Account credentials to log In !</h3>
 		@IfNotNull.Model.Message
 			<span>@!Model.Message</span>
 		@EndIf
