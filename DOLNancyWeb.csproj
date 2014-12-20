@@ -74,7 +74,6 @@
     <Compile Include="scripts\DOLNancyWeb\modules\AuthenticationModule.cs" />
     <Compile Include="scripts\DOLNancyWeb\modules\BasePublicModule.cs" />
     <Compile Include="scripts\DOLNancyWeb\modules\BaseSecuredModule.cs" />
-    <Compile Include="scripts\DOLNancyWeb\modules\DOLNancySecureDemo.cs" />
     <Compile Include="scripts\DOLNancyWeb\modules\DOLNancyWelcome.cs" />
     <Compile Include="scripts\DOLNancyWeb\modules\ServerPropertiesModule.cs" />
   </ItemGroup>
@@ -110,7 +109,6 @@
     <None Include="scripts\DOLNancyWeb\views\loginform.sshtml" />
     <None Include="scripts\DOLNancyWeb\views\main.sshtml" />
     <None Include="scripts\DOLNancyWeb\views\menu.sshtml" />
-    <None Include="scripts\DOLNancyWeb\views\securedemo.sshtml" />
     <None Include="scripts\DOLNancyWeb\views\serverproperties.sshtml" />
     <None Include="scripts\DOLNancyWeb\views\serverproperties_entry.sshtml" />
     <None Include="scripts\DOLNancyWeb\views\title.sshtml" />
