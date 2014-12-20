@@ -7,7 +7,7 @@
 		<div id="dlw_title" class="dlw_title">
 			@Section['Title']
 		</div>
-		<div id="dlw_authentication" class="dlw_authentication">
+		<div id="dlw_homelogin" class="dlw_authentication dlw_boxed">
 			@Section['Authentication']
 		</div>
 		<div id="dlw_menu" class="dlw_menu">

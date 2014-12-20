@@ -122,7 +122,7 @@ namespace DOLNancyWeb
 				try
 				{
 					HostConfiguration hostConfigs = new HostConfiguration();
-					hostConfigs.UnhandledExceptionCallback = unhandledEx => { if (log.IsWarnEnabled) log.WarnFormat("Exception in DOL Nancy Embedded WebServer : {0}", unhandledEx); };
+					hostConfigs.UnhandledExceptionCallback = UnHandledException;
 					hostConfigs.UrlReservations.CreateAutomatically = true;
 					m_embeddedWebServer = new NancyHost(new Uri(DOLNancyWebInit.WEB_SERVER_LISTEN_URI), new DOLNancyBootstrapper(), hostConfigs);
 					m_embeddedWebServer.Start();
@@ -162,6 +162,20 @@ namespace DOLNancyWeb
 						log.ErrorFormat("Error While Stopping Embedded Nancy Web Server : {0}", ex);
 				}
 			}
+		}
+		
+		/// <summary>
+		/// Method To Display UnHandled Exception From Nancy Process
+		/// </summary>
+		/// <param name="e"></param>
+		public static void UnHandledException(Exception e)
+		{
+			// ignore network exception...
+			if (e is System.Net.HttpListenerException && e.TargetSite.Name.Equals("Write"))
+				return;
+
+			if (log.IsWarnEnabled)
+				log.WarnFormat("Exception in DOL Nancy Embedded WebServer : {0}", e);
 		}
 		#endregion
 		

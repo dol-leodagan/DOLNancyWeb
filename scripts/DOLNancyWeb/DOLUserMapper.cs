@@ -43,6 +43,33 @@ namespace DOLNancyWeb
 		/// Memory Static Mapping Dictionary (with long for init time storing)
 		/// </summary>
 		private static readonly ReaderWriterDictionary<Guid, IUserIdentity> m_userIdentityMapper = new ReaderWriterDictionary<Guid, IUserIdentity>();
+
+		/// <summary>
+		/// Cleanup for Dynamic GUID
+		/// </summary>
+		private const int DYNAMIC_GUID_CLEANUP_TIMER = 600000;
+		
+		/// <summary>
+		/// Timer for dynamic GUID cleanup 
+		/// </summary>
+		private static readonly System.Threading.Timer m_antibruteForce = new System.Threading.Timer(CleanupCallback, null, DYNAMIC_GUID_CLEANUP_TIMER, System.Threading.Timeout.Infinite);
+
+		/// <summary>
+		/// Clean up Dynamic GUID.
+		/// </summary>
+		/// <param name="state"></param>
+		private static void CleanupCallback(object state)
+		{
+			// We only clean duplicate Cookies for a same user, keeping at least "one" long lasting Session
+			foreach (var guid in m_userIdentityMapper.GroupBy(kv => kv.Value.UserName)
+			         .Select(ins => ins.Where(kv => (GameTimer.GetTickCount() - ((DOLUserIdentity)kv.Value).AccessTime) > DYNAMIC_GUID_CLEANUP_TIMER)
+			                 .OrderByDescending(kv => ((DOLUserIdentity)kv.Value).AccessTime).Skip(1))
+			         .SelectMany(kv => kv).Select(kv => kv.Key).ToArray())
+			{
+				IUserIdentity dummy;
+				m_userIdentityMapper.TryRemove(guid, out dummy);
+			}
+		}
 		
 		/// <summary>
 		/// Register an Authenticated User.
@@ -146,6 +173,7 @@ namespace DOLNancyWeb
 			
 			if (m_userIdentityMapper.TryGetValue(identifier, out user))
 			{
+				((DOLUserIdentity)user).AccessTime = GameTimer.GetTickCount();
 				return user;
 			}
 			

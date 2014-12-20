@@ -1,0 +1,16 @@
+﻿@Master['views/index.sshtml']
+
+@Section['Body']
+	<form id="dlw_serverproperties" action="">
+	<table>
+	<tr><th>Key</th><th>Description</th><th>Default</th><th>Database</th><th>Current</th></tr>
+	@Each.Model.DataServerProperties
+		<tr>
+		<td>@!Current.Key (@!Current.Value.Item1.Category)</td>
+		<td>@!Current.Value.Item1.Description</td>
+			@Partial['views/serverproperties_entry.sshtml', @Current.Value]
+		</tr>
+	@EndEach
+	</table>
+	</form>
+@EndSection

@@ -71,6 +71,8 @@ namespace DOLNancyWeb
 		}
 	    #endregion
 	    
+	    public long AccessTime { get; set; }
+	    
 		public DOLUserIdentity(Account acc, Guid guid)
 		{
 			m_dBAccount = acc;

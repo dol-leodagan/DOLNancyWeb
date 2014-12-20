@@ -34,7 +34,7 @@ namespace DOLNancyWeb
 			: base()
 		{
 			// Get Model for Page Display
-			var model = new DOLNancyDefaultModel(this);
+			var model = new WelcomeModel(this);
 			model.Title = "Welcome";
 			Get["/"] = parameters => View["views/welcome.sshtml", model];
 		}

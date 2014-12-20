@@ -69,11 +69,14 @@
     <Compile Include="scripts\DOLNancyWeb\DOLUserMapper.cs" />
     <Compile Include="scripts\DOLNancyWeb\models\AuthenticationModel.cs" />
     <Compile Include="scripts\DOLNancyWeb\models\DOLNancyDefaultModel.cs" />
+    <Compile Include="scripts\DOLNancyWeb\models\ServerPropertiesModel.cs" />
+    <Compile Include="scripts\DOLNancyWeb\models\WelcomeModel.cs" />
     <Compile Include="scripts\DOLNancyWeb\modules\AuthenticationModule.cs" />
     <Compile Include="scripts\DOLNancyWeb\modules\BasePublicModule.cs" />
     <Compile Include="scripts\DOLNancyWeb\modules\BaseSecuredModule.cs" />
     <Compile Include="scripts\DOLNancyWeb\modules\DOLNancySecureDemo.cs" />
     <Compile Include="scripts\DOLNancyWeb\modules\DOLNancyWelcome.cs" />
+    <Compile Include="scripts\DOLNancyWeb\modules\ServerPropertiesModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="scripts" />
@@ -108,6 +111,8 @@
     <None Include="scripts\DOLNancyWeb\views\main.sshtml" />
     <None Include="scripts\DOLNancyWeb\views\menu.sshtml" />
     <None Include="scripts\DOLNancyWeb\views\securedemo.sshtml" />
+    <None Include="scripts\DOLNancyWeb\views\serverproperties.sshtml" />
+    <None Include="scripts\DOLNancyWeb\views\serverproperties_entry.sshtml" />
     <None Include="scripts\DOLNancyWeb\views\title.sshtml" />
     <None Include="scripts\DOLNancyWeb\views\welcome.sshtml" />
   </ItemGroup>

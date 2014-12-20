@@ -1,0 +1,10 @@
+@If.Model.Item4
+	<td><textarea readonly="yes">@!Current.Value.Item1.DefaultValue</textarea></td>
+	<td><textarea>@!Current.Value.Item3.Value</textarea></td>
+	<td><textarea>@!Current.Value.Item2</textarea></td>
+@EndIf
+@IfNot.Model.Item4
+	<td><input readonly="yes" type="text" value="@!Current.Value.Item1.DefaultValue" /></td>
+	<td><input type="text" value="@!Current.Value.Item3.Value" /></td>
+	<td><input type="text" value="@!Current.Value.Item2" /></td>
+@EndIf

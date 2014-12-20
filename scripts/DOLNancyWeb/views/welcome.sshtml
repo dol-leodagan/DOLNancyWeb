@@ -2,8 +2,21 @@
 
 @Section['Body']
 
-<p>Server Name : @!Model.Server.Configuration.ServerName</p>
-<p>Server Player Count : @!Model.Server.ClientCount</p>
-<p>Server Time : @!Model.GameTime</p>
+<div id="dlw_status" class="dlw_boxed">
+	<fieldset>
+		<legend>@!Model.Server.Configuration.ServerName</legend>
+		<div>Status:<span>@!Model.Server.ServerStatus</span></div>
+		<div>Player Count:<span>@!Model.Server.ClientCount</span></div>
+		<div>Game Time:<span>@!Model.GameTime</span></div>
+		<div>Memory:<span>@!Model.Memory MB</span></div>
+		<div>Up:<span>@!Model.BytesOut MB</span></div>
+		<div>Down:<span>@!Model.BytesIn MB</span></div>
+	</fieldset>
+</div>
+
+<div id="dlw_intro" class="dlw_intro">
+	<p>@!Model.ServerProperties.starting_msg</p>
+	<p>@!Model.ServerProperties.motd</p>
+</div>
 
 @EndSection

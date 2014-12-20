@@ -17,10 +17,14 @@
  *
  */
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 using Nancy;
 
 using DOL.GS;
+using DOL.GS.ServerProperties;
+using DOL.Database;
 
 namespace DOLNancyWeb
 {
@@ -75,6 +79,11 @@ namespace DOLNancyWeb
 			}
 		}
 
+		public IDictionary<string, object> ServerProperties
+		{
+			get; set;
+		}
+		
 		/// <summary>
 		/// Page Title
 		/// </summary>
@@ -87,6 +96,7 @@ namespace DOLNancyWeb
 		public DOLNancyDefaultModel(NancyModule module)
 		{
 			m_module = module;
+			ServerProperties = Properties.AllCurrentProperties;
 		}
 	}
 }

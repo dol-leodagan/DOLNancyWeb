@@ -31,6 +31,6 @@
 	<li>Admin</li>
 		<ul>
 			<li><a href="@Path['~/roles']">Roles</a></li>
-			<li><a href="@Path['~/properties']">Properties</a></li>
+			<li><a href="@Path['~/serverproperties']">Properties</a></li>
 		</ul>
 </ul>
