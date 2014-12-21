@@ -220,7 +220,7 @@ namespace DOLNancyWeb
 									IFormatProvider provider = myCIintl.NumberFormat;
 									dv = ((double)v.Value.Item1.DefaultValue).ToString(provider);
 									cv = ((double)v.Value.Item2.GetValue(null)).ToString(provider);
-									regex = @"[-+]?[0-9]*\\.?[0-9]+";
+									regex = @"[-+]?[0-9]*\.?[0-9]+";
                                	}
                                	else
                                	{
@@ -236,7 +236,7 @@ namespace DOLNancyWeb
                                		         || v.Value.Item1.DefaultValue is uint
                                		         || v.Value.Item1.DefaultValue is ulong)
                                		{
-                               			regex = "[0-9]+";
+                               			regex = @"[0-9]+";
                                		}
                                		else if (v.Value.Item1.DefaultValue is bool)
                                		{
@@ -244,7 +244,7 @@ namespace DOLNancyWeb
                                		}
                                		else
                                		{
-                               			regex = ".*";
+                               			regex = @".*";
                                		}
                                		
                                		dv = v.Value.Item1.DefaultValue.ToString();
