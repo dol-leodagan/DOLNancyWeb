@@ -90,7 +90,16 @@ namespace DOLNancyWeb
 						bool update = false;
 						if (propEdit.InitialCurrentValue != propEdit.CurrentValue)
 						{
-							serverProperty.Item2.SetValue(null, Convert.ChangeType(propEdit.CurrentValue, cv.GetType()));
+							object newValue = Convert.ChangeType(propEdit.CurrentValue, cv.GetType());
+							serverProperty.Item2.SetValue(null, newValue);
+							try
+							{
+								Properties.AllCurrentProperties[propEdit.PropertyID] = newValue;
+							}
+							catch
+							{
+							}
+							
 							update = true;
 						}
 						
@@ -147,6 +156,14 @@ namespace DOLNancyWeb
 					}
 
 					serverProperty.Item2.SetValue(null, serverProperty.Item1.DefaultValue);
+					try
+					{
+						Properties.AllCurrentProperties[propEdit.PropertyID] = serverProperty.Item1.DefaultValue;
+					}
+					catch
+					{
+					}
+
 					serverProperty.Item3.Value = defaultValue;
 					GameServer.Database.SaveObject(serverProperty.Item3);
 
