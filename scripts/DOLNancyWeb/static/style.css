@@ -5,7 +5,7 @@ body {
 	margin: 0;
 }
 
-input {
+input, textarea {
 	background: none repeat scroll 0 0 #fafafa;
 	border: 1px solid #ddd;
 	font-size: 0.95em;
@@ -13,9 +13,19 @@ input {
 	padding: 0.15em;
 }
 
-input:hover, input:focus {
+input:hover, input:focus, textarea:hover, textarea:focus {
 	background: none repeat scroll 0 0 #f6f6f6;
 	border-color: #c5c5c5;
+}
+
+input[readonly], textarea[readonly] {
+	color: #999;
+	font-style: italic;
+	background-color: #eee;
+}
+
+.dlw_inputchanged {
+	background-color: #F2D6FF !important;
 }
 
 button {
@@ -24,6 +34,20 @@ button {
 	border: 0 none #000;
 	padding: 0.25em;
 	border-radius: 2px;
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+}
+
+button:hover {
+	box-shadow: -1px 2px 3px 1px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+	box-shadow: -1px 2px 7px 3px rgba(0, 0, 0, 0.3) inset;
+}
+
+button:disabled {
+	color: #aaa;
+	background-color: #EADC83;
 }
 
 fieldset {
@@ -43,6 +67,27 @@ fieldset {
 	font-size: 1.1em;
 }
 
+.dlw_importantmessage {
+	font-size: 1.2em;
+	text-align: center;
+	color: #A05D00;
+	text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.dlw_errorpage {
+	background: white url("/static/img/alert.png") no-repeat left top;
+	padding-left: calc(236px + 1.5em);
+	min-height: 240px;
+	width: 50%;
+	margin: 1em auto 1em auto;
+	font-size: 2em;
+	text-align: center;
+}
+
+.dlw_errorpage span {
+	margin-top: 5%;
+	display: inline-block;
+}
 
 /* Title Styles */
 
@@ -195,9 +240,6 @@ span.dlw_currentplayer[data-player-realm="_LastPlayerRealm"] > span, span.dlw_cu
 	top: -0.5em;
 }
 
-#dlw_homelogin > form, #dlw_hello {
-}
-
 #dlw_login > form {
 	padding: 0.2em;
 	margin-top: 0.5em;
@@ -255,4 +297,8 @@ span.dlw_currentplayer[data-player-realm="_LastPlayerRealm"] > span, span.dlw_cu
 	display: block;
 	float: right;
 	font-weight: bold;
+}
+
+#dlw_status div {
+	clear: right;
 }

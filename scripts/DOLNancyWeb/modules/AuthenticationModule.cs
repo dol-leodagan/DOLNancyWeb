@@ -57,7 +57,7 @@ namespace DOLNancyWeb
 			: base()
 		{			
 			// Login Form
-			Get["/login"] = parameters => View["views/login.sshtml", new AuthenticationModel(this)];
+			Get["/login"] = parameters => View["views/login.sshtml", new AuthenticationModel(this.Context)];
 
 			// Logout URI
 			Get["/logout"] = parameters => {				
@@ -83,7 +83,7 @@ namespace DOLNancyWeb
 				{
 					if ((GameTimer.GetTickCount() - lastAttempt) < ANTI_BRUTEFORCE_TIME_LIMIT)
 					{
-						var model = new AuthenticationModel(this);
+						var model = new AuthenticationModel(this.Context);
 						model.Message = "Please wait some time before trying to Log In again...";
 						return View["views/login.sshtml",model];
 					}
@@ -95,7 +95,7 @@ namespace DOLNancyWeb
 					// Register anti brute force
 					m_loginAttempt[this.Context.Request.UserHostAddress] = GameTimer.GetTickCount();
 				
-					var model = new AuthenticationModel(this);
+					var model = new AuthenticationModel(this.Context);
 					model.Message = string.Format("Error While Authenticating User {0} - {1}", loginParams.Username, errorMessage);
 					return View["views/login.sshtml",model];
 				}

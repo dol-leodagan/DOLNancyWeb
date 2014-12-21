@@ -1,0 +1,9 @@
+﻿@Master['views/index.sshtml']
+
+@Section['Body']
+
+<div id="err403" class="dlw_errorpage">
+	<span>You're Unauthorized to view this Page !</span>
+</div>
+
+@EndSection

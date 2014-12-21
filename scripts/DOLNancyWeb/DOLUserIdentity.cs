@@ -23,6 +23,7 @@ using Nancy;
 using Nancy.Security;
 
 using DOL.Database;
+using DOL.GS;
 
 namespace DOLNancyWeb
 {
@@ -39,14 +40,16 @@ namespace DOLNancyWeb
 		/// <summary>
 		/// Retrieve this UserIdentity DBAccount
 		/// </summary>
-		public Account DBAccount {
+		public Account DBAccount
+		{
 			get { return m_dBAccount; }
 		}
 
 		/// <summary>
 		/// User Authentication Configured Guid
 		/// </summary>
-		public Guid UserGuid {
+		public Guid UserGuid
+		{
 			get { return m_userGuid; }
 			set { }
 		}
@@ -66,15 +69,24 @@ namespace DOLNancyWeb
 		/// </summary>
 		public IEnumerable<string> Claims
 		{
-			get { return new List<string>(); }
-			set { }
+			get; private set;
 		}
 	    #endregion
 	    
+	    /// <summary>
+	    /// Last Session Access Time for Duplicate Cleanups Priority
+	    /// </summary>
 	    public long AccessTime { get; set; }
 	    
 		public DOLUserIdentity(Account acc, Guid guid)
 		{
+			if ((ePrivLevel)acc.PrivLevel == ePrivLevel.Player)
+				Claims = new string[] { "player" };
+			if ((ePrivLevel)acc.PrivLevel == ePrivLevel.GM)
+				Claims = new string[] { "player", "gamemaster" };
+			if ((ePrivLevel)acc.PrivLevel == ePrivLevel.Admin)
+				Claims = new string[] { "player", "gamemaster", "admin" };
+			
 			m_dBAccount = acc;
 			m_userGuid = guid;
 		}

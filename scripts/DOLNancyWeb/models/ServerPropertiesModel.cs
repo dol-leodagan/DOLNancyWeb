@@ -17,32 +17,30 @@
  *
  */
 using System;
+using System.Collections.Generic;
 
 using Nancy;
 
 namespace DOLNancyWeb
 {
 	/// <summary>
-	/// Authentication Page Model
+	/// Server Properties Editor Model
 	/// </summary>
-	public class AuthenticationModel : DOLNancyDefaultModel
+	public class ServerPropertiesModel : DOLNancyDefaultModel
 	{
 		/// <summary>
-		/// Message for Error Display
+		/// Server Properties To display for Editing
 		/// </summary>
-		public string Message;
-		
-		/// <summary>
-		/// Override Page Title
-		/// </summary>
-		public override string Title {
-			get { return "Log In"; }
+		public IDictionary<string, ServerPropertiesModule.PropertyDisplay> DataServerProperties
+		{
+			get; set;
 		}
 		
-		public AuthenticationModel(NancyContext context)
+		public ServerPropertiesModel(NancyContext context)
 			: base(context)
 		{
-			
+			StyleSheets.Add("/static/serverproperties.css");
+			Scripts.Add("/static/serverproperties.js");
 		}
 	}
 }

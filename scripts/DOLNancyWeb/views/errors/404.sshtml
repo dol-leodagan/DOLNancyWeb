@@ -1,0 +1,9 @@
+﻿@Master['views/index.sshtml']
+
+@Section['Body']
+
+<div id="err404" class="dlw_errorpage">
+	<span>Ressource could not be found at this Location !</span>
+</div>
+
+@EndSection

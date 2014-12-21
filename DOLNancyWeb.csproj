@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="scripts\DOLNancyWeb\DOLNancyBootstrapper.cs" />
+    <Compile Include="scripts\DOLNancyWeb\DOLNancyStatusHandler.cs" />
     <Compile Include="scripts\DOLNancyWeb\DOLNancyWebInit.cs" />
     <Compile Include="scripts\DOLNancyWeb\DOLRootPathProvider.cs" />
     <Compile Include="scripts\DOLNancyWeb\DOLUserIdentity.cs" />
@@ -84,6 +85,7 @@
     <Folder Include="scripts\DOLNancyWeb\models" />
     <Folder Include="scripts\DOLNancyWeb\views" />
     <Folder Include="scripts\DOLNancyWeb\static" />
+    <Folder Include="scripts\DOLNancyWeb\views\errors" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\code\DOLSharp\trunk\DOLBase\DOLBase.csproj">
@@ -100,7 +102,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="scripts\DOLNancyWeb\static\serverproperties.css" />
+    <None Include="scripts\DOLNancyWeb\static\serverproperties.js" />
     <None Include="scripts\DOLNancyWeb\static\style.css" />
+    <None Include="scripts\DOLNancyWeb\views\errors\403.sshtml" />
+    <None Include="scripts\DOLNancyWeb\views\errors\404.sshtml" />
+    <None Include="scripts\DOLNancyWeb\views\errors\405.sshtml" />
+    <None Include="scripts\DOLNancyWeb\views\errors\500.sshtml" />
     <None Include="scripts\DOLNancyWeb\views\foot.sshtml" />
     <None Include="scripts\DOLNancyWeb\views\head.sshtml" />
     <None Include="scripts\DOLNancyWeb\views\hello.sshtml" />

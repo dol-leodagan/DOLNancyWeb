@@ -37,7 +37,7 @@ namespace DOLNancyWeb
 		/// <summary>
 		/// Module related to this model
 		/// </summary>
-		private NancyModule m_module;
+		private NancyContext m_context;
 		
 		/// <summary>
 		/// Return Server Instance
@@ -57,9 +57,9 @@ namespace DOLNancyWeb
 		{
 			get
 			{
-				if (m_module.Context != null && m_module.Context.CurrentUser != null)
+				if (m_context != null && m_context.CurrentUser != null)
 				{
-					var client = WorldMgr.GetClientByAccountName(m_module.Context.CurrentUser.UserName, true);
+					var client = WorldMgr.GetClientByAccountName(m_context.CurrentUser.UserName, true);
 					if (client != null && client.IsPlaying)
 					{
 						return client.Player;
@@ -70,6 +70,9 @@ namespace DOLNancyWeb
 			}
 		}
 		
+		/// <summary>
+		/// Human Readable Game Time
+		/// </summary>
 		public string GameTime 
 		{
 			get
@@ -89,14 +92,30 @@ namespace DOLNancyWeb
 		/// </summary>
 		public virtual string Title { get; set; }
 		
+		public virtual List<string> StyleSheets
+		{
+			get; set;
+		}
+		
+		public virtual List<string> Scripts
+		{
+			get; set;
+		}
+		
 		/// <summary>
 		/// Default Constructor with NancyModule Reference.
 		/// </summary>
 		/// <param name="module"></param>
-		public DOLNancyDefaultModel(NancyModule module)
+		public DOLNancyDefaultModel(NancyContext context)
 		{
-			m_module = module;
+			m_context = context;
 			ServerProperties = Properties.AllCurrentProperties;
+			
+			StyleSheets = new List<string>();
+			StyleSheets.Add("/static/style.css");
+			
+			Scripts = new List<string>();
+			Scripts.Add("/static/jquery-2.1.1.min.js");
 		}
 	}
 }

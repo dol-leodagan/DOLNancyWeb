@@ -40,7 +40,7 @@ namespace DOLNancyWeb
 	public class DOLUserMapper : IUserMapper
 	{
 		/// <summary>
-		/// Memory Static Mapping Dictionary (with long for init time storing)
+		/// Memory Static Mapping Dictionary
 		/// </summary>
 		private static readonly ReaderWriterDictionary<Guid, IUserIdentity> m_userIdentityMapper = new ReaderWriterDictionary<Guid, IUserIdentity>();
 
@@ -50,9 +50,14 @@ namespace DOLNancyWeb
 		private const int DYNAMIC_GUID_CLEANUP_TIMER = 600000;
 		
 		/// <summary>
+		/// Dynamic GUID Cookie LifeTime (default 1 week)
+		/// </summary>
+		private const int DYNAMIC_GUID_LIFETIME = 604800000;
+		
+		/// <summary>
 		/// Timer for dynamic GUID cleanup 
 		/// </summary>
-		private static readonly System.Threading.Timer m_antibruteForce = new System.Threading.Timer(CleanupCallback, null, DYNAMIC_GUID_CLEANUP_TIMER, System.Threading.Timeout.Infinite);
+		private static readonly System.Threading.Timer m_guidCleanup = new System.Threading.Timer(CleanupCallback, null, DYNAMIC_GUID_CLEANUP_TIMER, System.Threading.Timeout.Infinite);
 
 		/// <summary>
 		/// Clean up Dynamic GUID.
@@ -61,14 +66,15 @@ namespace DOLNancyWeb
 		private static void CleanupCallback(object state)
 		{
 			// We only clean duplicate Cookies for a same user, keeping at least "one" long lasting Session
-			foreach (var guid in m_userIdentityMapper.GroupBy(kv => kv.Value.UserName)
-			         .Select(ins => ins.Where(kv => (GameTimer.GetTickCount() - ((DOLUserIdentity)kv.Value).AccessTime) > DYNAMIC_GUID_CLEANUP_TIMER)
-			                 .OrderByDescending(kv => ((DOLUserIdentity)kv.Value).AccessTime).Skip(1))
-			         .SelectMany(kv => kv).Select(kv => kv.Key).ToArray())
+			foreach (var guid in m_userIdentityMapper
+			         .Where(kv => (GameTimer.GetTickCount() - ((DOLUserIdentity)kv.Value).AccessTime) > DYNAMIC_GUID_LIFETIME)
+			         .Select(kv => kv.Key).ToArray())
 			{
 				IUserIdentity dummy;
 				m_userIdentityMapper.TryRemove(guid, out dummy);
 			}
+			
+			m_guidCleanup.Change(DYNAMIC_GUID_CLEANUP_TIMER, System.Threading.Timeout.Infinite);
 		}
 		
 		/// <summary>
@@ -129,7 +135,7 @@ namespace DOLNancyWeb
 			Account playerAccount = null;
 			try
 			{
-				playerAccount = GameServer.Database.FindObjectByKey<Account>(GameServer.Database.Escape(username));
+				playerAccount = GameServer.Database.FindObjectByKey<Account>(username);
 			}
 			catch
 			{

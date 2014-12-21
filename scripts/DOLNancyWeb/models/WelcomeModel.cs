@@ -20,26 +20,40 @@ using System;
 
 using Nancy;
 
+using DOL;
+
 namespace DOLNancyWeb
 {
 	/// <summary>
-	/// Authentication Page Model
+	/// Welcome Page Model with Server Status
 	/// </summary>
-	public class AuthenticationModel : DOLNancyDefaultModel
+	public class WelcomeModel : DOLNancyDefaultModel
 	{
 		/// <summary>
-		/// Message for Error Display
+		/// Network Bytes Count In
 		/// </summary>
-		public string Message;
-		
+		public double BytesIn
+		{
+			get { return Math.Round(((double)Statistics.BytesIn)/1024/1024, 2); }
+		}
+
 		/// <summary>
-		/// Override Page Title
+		/// Network Bytes Count Out
 		/// </summary>
-		public override string Title {
-			get { return "Log In"; }
+		public double BytesOut
+		{
+			get { return Math.Round(((double)Statistics.BytesOut)/1024/1024, 2); }
 		}
 		
-		public AuthenticationModel(NancyContext context)
+		/// <summary>
+		/// Memory Usage in MB
+		/// </summary>
+		public double Memory
+		{
+			get { return Math.Round(((double)GC.GetTotalMemory(false))/1024/1024, 1); }
+		}
+		
+		public WelcomeModel(NancyContext context)
 			: base(context)
 		{
 			

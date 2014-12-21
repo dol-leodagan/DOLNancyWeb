@@ -1,0 +1,9 @@
+﻿@Master['views/index.sshtml']
+
+@Section['Body']
+
+<div id="err500" class="dlw_errorpage">
+	<span>Internal Server Error while rendering this page.</span>
+</div>
+
+@EndSection

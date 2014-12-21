@@ -1,0 +1,9 @@
+﻿@Master['views/index.sshtml']
+
+@Section['Body']
+
+<div id="err405" class="dlw_errorpage">
+	<span>Resource is not allowed to be accessed this way, please try using Welcome Page to continue browsing !</span>
+</div>
+
+@EndSection

@@ -1,10 +1,29 @@
-@If.Model.Item4
-	<td><textarea readonly="yes">@!Current.Value.Item1.DefaultValue</textarea></td>
-	<td><textarea>@!Current.Value.Item3.Value</textarea></td>
-	<td><textarea>@!Current.Value.Item2</textarea></td>
+<form method="post" action="@Path['~/serverproperties/apply/']@!Model.Key">
+<tr data-indb="@Model.Value.InDB">
+	<td>
+		<a name="@!Model.Key"></a>
+		<div>@!Model.Key</div>
+		<div>@!Model.Value.Category</div>
+		<input type="hidden" name="InitialDBValue" value="@!Model.Value.DataValue" />
+		<input type="hidden" name="InitialCurrentValue" value="@!Model.Value.CurrentValue" />
+	</td>
+	<td>@!Model.Value.Description</td>
+@If.Value.IsTextArea
+	<td><textarea readonly="yes">@!Model.Value.DefaultValue</textarea></td>
+	<td><textarea name="DBValue">@!Model.Value.DataValue</textarea></td>
+	<td><textarea name="CurrentValue">@!Model.Value.CurrentValue</textarea></td>
 @EndIf
-@IfNot.Model.Item4
-	<td><input readonly="yes" type="text" value="@!Current.Value.Item1.DefaultValue" /></td>
-	<td><input type="text" value="@!Current.Value.Item3.Value" /></td>
-	<td><input type="text" value="@!Current.Value.Item2" /></td>
+@IfNot.Value.IsTextArea
+	<td><input readonly="yes" type="text" value="@!Model.Value.DefaultValue" /></td>
+	<td><input name="DBValue" type="text" value="@!Model.Value.DataValue" pattern="@!Model.Value.Regex" required="yes" /></td>
+	<td><input name="CurrentValue" type="text" value="@!Model.Value.CurrentValue" pattern="@!Model.Value.Regex" required="yes" /></td>
 @EndIf
+	<td>
+		<button type="submit">Apply</button>
+		<button formaction="@Path['~/serverproperties/default/']@!Model.Key" type="submit" @If.Value.IsDefault;disabled="true"@EndIf;>Default</button>
+	</td>
+</tr>
+@IfNotNull.Value.Message
+	<tr><td class="dlw_importantmessage" colspan=6>@!Model.Value.Message</td></tr>
+@EndIf
+</form>

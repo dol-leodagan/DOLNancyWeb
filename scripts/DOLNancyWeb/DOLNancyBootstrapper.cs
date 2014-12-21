@@ -22,6 +22,7 @@ using Nancy;
 using Nancy.Conventions;
 using Nancy.Authentication.Forms;
 using Nancy.Cryptography;
+using Nancy.Session;
 
 namespace DOLNancyWeb
 {
@@ -58,6 +59,9 @@ namespace DOLNancyWeb
 		protected override void ApplicationStartup(Nancy.TinyIoc.TinyIoCContainer container, Nancy.Bootstrapper.IPipelines pipelines)
 		{
 			base.ApplicationStartup(container, pipelines);
+			
+			// Enable Cookie Based Session
+			CookieBasedSessions.Enable(pipelines);
 			
 			// Set Cryptography Configuration
 			var cryptographyConfiguration = new CryptographyConfiguration(
