@@ -35,6 +35,13 @@ namespace DOLNancyWeb
 		{
 			get; set;
 		}
+
+		/// <summary>
+		/// Override Page Title
+		/// </summary>
+		public override string Title {
+			get { return "Server Properties"; }
+		}
 		
 		public ServerPropertiesModel(NancyContext context)
 			: base(context)

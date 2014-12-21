@@ -33,10 +33,7 @@ namespace DOLNancyWeb
 		public DOLNancyWelcome()
 			: base()
 		{
-			// Get Model for Page Display
-			var model = new WelcomeModel(this.Context);
-			model.Title = "Welcome";
-			Get["/"] = parameters => View["views/welcome.sshtml", model];
+			Get["/"] = parameters => View["views/welcome.sshtml", new WelcomeModel(this.Context)];
 		}
 	}
 }

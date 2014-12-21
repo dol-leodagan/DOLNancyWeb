@@ -53,6 +53,13 @@ namespace DOLNancyWeb
 			get { return Math.Round(((double)GC.GetTotalMemory(false))/1024/1024, 1); }
 		}
 		
+		/// <summary>
+		/// Override Page Title
+		/// </summary>
+		public override string Title {
+			get { return "Welcome"; }
+		}
+		
 		public WelcomeModel(NancyContext context)
 			: base(context)
 		{

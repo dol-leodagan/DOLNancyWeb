@@ -48,7 +48,6 @@ namespace DOLNancyWeb
 			Get["/"] = parameters => {
 				// Get Model for Page Display
 				var model = new ServerPropertiesModel(this.Context);
-				model.Title = "Server Properties";
 				model.DataServerProperties = GetAllDomainProperties(this.Session["sp_propertyid"] as string, this.Session["sp_message"] as string);
 				this.Session["sp_propertyid"] = null;
 				this.Session["sp_message"] = null;
