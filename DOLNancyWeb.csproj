@@ -40,16 +40,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net">
-      <HintPath>..\sharedModules\log4net\log4net.dll</HintPath>
+      <HintPath>packages\log4net.2.0.4\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Nancy">
-      <HintPath>lib\Nancy.dll</HintPath>
+      <HintPath>packages\Nancy.1.4.3\lib\net40\Nancy.dll</HintPath>
     </Reference>
     <Reference Include="Nancy.Authentication.Forms">
-      <HintPath>lib\Nancy.Authentication.Forms.dll</HintPath>
+      <HintPath>packages\Nancy.Authentication.Forms.1.4.1\lib\net40\Nancy.Authentication.Forms.dll</HintPath>
     </Reference>
     <Reference Include="Nancy.Hosting.Self">
-      <HintPath>lib\Nancy.Hosting.Self.dll</HintPath>
+      <HintPath>packages\Nancy.Hosting.Self.1.4.1\lib\net40\Nancy.Hosting.Self.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
