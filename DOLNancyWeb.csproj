@@ -11,9 +11,17 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <SignAssembly>False</SignAssembly>
+    <DelaySign>False</DelaySign>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -22,6 +30,7 @@
     <Optimize>False</Optimize>
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -34,13 +43,13 @@
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <PlatformTarget>x86</PlatformTarget>
-    <RegisterForComInterop>false</RegisterForComInterop>
+    <RegisterForComInterop>False</RegisterForComInterop>
     <BaseAddress>285212672</BaseAddress>
     <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net">
-      <HintPath>packages\log4net.2.0.4\lib\net45-full\log4net.dll</HintPath>
+      <HintPath>$(SolutionDir)packages\log4net.2.0.4\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Nancy">
       <HintPath>packages\Nancy.1.4.3\lib\net40\Nancy.dll</HintPath>
@@ -123,13 +132,13 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
-    <PostBuildEvent Condition=" '$(OS)' != 'Unix' ">xcopy "$(ProjectDir)scripts\DOLNancyWeb\*" "$(SolutionDir)$(ConfigurationName)\scripts\DOLNancyWeb" /y /s /q /i
-	xcopy "$(ProjectDir)lib\*" "$(SolutionDir)$(ConfigurationName)\lib" /y /s /q /i
-</PostBuildEvent>
-    <PostBuildEvent Condition=" '$(OS)' == 'Unix' ">cd "$(ProjectDir)"; mkdir -p "$(SolutionDir)`echo $(ConfigurationName) | tr '[:upper:]' '[:lower:]'`/scripts/DOLNancyWeb"; find ./ | xargs -i -t cp --parents -f {} "$(SolutionDir)`echo $(ConfigurationName) | tr '[:upper:]' '[:lower:]'`/scripts/DOLNancyWeb"; cp -f "$(ProjectDir)*" "$(SolutionDir)`echo $(ConfigurationName) | tr '[:upper:]' '[:lower:]'`/lib";
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <PostBuildEvent>xcopy "$(ProjectDir)\bin\$(ConfigurationName)\DOLNancyWeb.*" "$(SolutionDir)$(ConfigurationName)\lib" /y /s /q /i
+xcopy "$(ProjectDir)\bin\$(ConfigurationName)\Nancy.*" "$(SolutionDir)$(ConfigurationName)\lib" /y /s /q /i</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <PostBuildEvent>xcopy "$(ProjectDir)scripts\DOLNancyWeb\*" "$(SolutionDir)$(ConfigurationName)\scripts\DOLNancyWeb" /y /s /q /i
+xcopy "$(ProjectDir)\bin\$(ConfigurationName)\Nancy.*" "$(SolutionDir)$(ConfigurationName)\lib" /y /s /q /i
 </PostBuildEvent>
   </PropertyGroup>
 </Project>
